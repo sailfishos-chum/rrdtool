@@ -8,7 +8,7 @@
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
 Version: 1.5.6
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
@@ -140,6 +140,8 @@ server load average). This package allow you to use directly this library.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
+%{__install} -Dp -m0755 pkg-rrdtool/rrd-sync %{buildroot}%{_bindir}/rrd-sync
+
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 #%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 #%{__rm} -f %{buildroot}%{perl_vendorarch}/ntmake.pl
@@ -196,6 +198,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_libdir}/librrd.so.*
 %{_libdir}/librrd_th.so.*
 #%attr(775,rrdcached,rrdcached) %dir %{_localstatedir}/rrdtool/rrdcached
+%{_bindir}/rrd-sync
 
 %files devel
 %defattr(-, root, root, 0755)

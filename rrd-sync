@@ -1,0 +1,37 @@
+#!/usr/bin/python
+
+import os, argparse
+
+parser = argparse.ArgumentParser(description='Transfer RRD files between hosts with different architectures. This script transfers all RRDs in the given directory in LOCALHOST to the specified directory on specified host. The structure of local directory is transferred as well. Internally, it uses SSH to transfer the data. For convenience, insure that you could login into the specified host using SSH keys. The remote and local hosts have to have RRDTOOL installed.')
+
+parser.add_argument('directory', help='directory on localhost containing RRDs')
+parser.add_argument('remote_host', help='remote host')
+parser.add_argument('remote_dir', help='directory on remote host to which RRDs are transferred')
+
+args = parser.parse_args()
+
+srcdir = args.directory
+tgthost = args.remote_host
+tgtdir = args.remote_dir
+
+print "Copy from", srcdir, " to %s:%s" % (tgthost,tgtdir)
+
+def cmd(c):
+    print "Execute:", c
+    os.system(c)
+
+for root, dirs, files in os.walk(srcdir):
+    rr = os.path.relpath(root, srcdir)
+    print rr, root, srcdir
+    for di in dirs:
+        d = os.path.join(tgtdir, rr, di)
+        print "Creating dir:", d
+        cmd( "ssh " + tgthost + " mkdir -p " + d )
+    print
+
+    for fi in files:
+        ftgt = os.path.join(tgtdir, rr, fi)
+        fsrc = os.path.join(root, fi)
+        if os.path.splitext(fi)[1] == ".rrd":
+            print fsrc, "-->", ftgt
+            cmd( "rrdtool dump '" + fsrc + "' | ssh " + tgthost + " rrdtool restore - '" + ftgt + "'" )
