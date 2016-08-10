@@ -8,7 +8,7 @@
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
 Version: 1.5.6
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
@@ -22,9 +22,9 @@ BuildRequires: cairo-devel
 BuildRequires: freetype-devel
 BuildRequires: gcc-c++
 BuildRequires: glib2-devel
-BuildRequires: gettext-devel
+# BuildRequires: gettext-devel
 BuildRequires: groff
-BuildRequires: intltool
+#BuildRequires: intltool
 BuildRequires: libpng-devel
 BuildRequires: libxml2-devel
 # BuildRequires: lua-devel
@@ -38,7 +38,7 @@ BuildRequires: pango-devel
 # %{!?_without_xulrunner:BuildRequires: xulrunner-devel}
 BuildRequires: zlib-devel
 Requires: cairo
-Requires: gettext
+# Requires: gettext
 Requires: glib2
 Requires: libxml2
 # Requires: lua
@@ -132,7 +132,11 @@ server load average). This package allow you to use directly this library.
     --disable-rrdcached \
     --disable-rrdcgi \
     --disable-examples \
-    --disable-python
+    --disable-python \
+    --disable-nls \
+    --disable-ruby \
+    --disable-lua \
+    --disable-tcl
 
 %{__make}
 
