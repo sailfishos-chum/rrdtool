@@ -126,6 +126,11 @@ server load average). This package allow you to use directly this library.
 %setup -q -n %{name}-%{version}
 ls -l
 pwd
+
+ifconfig || true
+cat /etc/hosts
+cat /etc/resolv.conf
+
 echo %{REMSOURCE0}
 curl -O %{REMSOURCE0}
 tar zxvf rrdtool-1.5.6.tar.gz --strip-components=1
