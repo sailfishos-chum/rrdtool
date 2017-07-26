@@ -142,8 +142,6 @@ server load average). This package allow you to use directly this library.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-ls ..
-pwd
 %{__install} -Dp -m0755 ../rrd-sync %{buildroot}%{_bindir}/rrd-sync
 
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -163,6 +161,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{__rm} -f %{buildroot}%{_mandir}/man1/*.1*
 %{__rm} -f %{buildroot}%{_mandir}/man3/librrd.3*
 
+# remove docs
+%{__rm} -rf %{buildroot}%{_datadir}/doc/rrdtool*
 
 %clean
 %{__rm} -rf %{buildroot}
