@@ -16,7 +16,7 @@ URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 Source0: http://oss.oetiker.ch/rrdtool/pub/rrdtool-%{version}.tar.gz
 #Source1: rrdcached.init
 #Source2: rrdcached.sysconfig
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+#BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: cairo-devel
 BuildRequires: freetype-devel
@@ -128,6 +128,7 @@ server load average). This package allow you to use directly this library.
 %setup -q -n %{name}-%{version}
 ls -l
 pwd
+echo %{SOURCE0}
 
 %build
 %configure \
