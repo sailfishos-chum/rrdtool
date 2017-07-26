@@ -13,7 +13,7 @@ License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 
-Source: http://oss.oetiker.ch/rrdtool/pub/rrdtool-%{version}.tar.gz
+Source0: http://oss.oetiker.ch/rrdtool/pub/rrdtool-%{version}.tar.gz
 #Source1: rrdcached.init
 #Source2: rrdcached.sysconfig
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -37,6 +37,7 @@ BuildRequires: pango-devel
 # BuildRequires: tk-devel
 # %{!?_without_xulrunner:BuildRequires: xulrunner-devel}
 BuildRequires: zlib-devel
+BuildRequires: curl tar
 Requires: cairo
 # Requires: gettext
 Requires: glib2
@@ -124,7 +125,9 @@ server load average). This package allow you to use directly this library.
 # for the Lua language.
 
 %prep
-%setup
+%setup -q -n %{name}-%{version}
+ls -l
+pwd
 
 %build
 %configure \
@@ -248,174 +251,3 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 # %defattr(-, root, root, 0755)
 # %{_libdir}/lua/
 
-%changelog
-* Mon Feb 27 2012 David Hrbáč <david@hrbac.cz> - 1.4.7-1
-- new upstream release
-
-* Tue Dec 13 2011 Arnoud Vermeer <repoforge@freshway.biz> - 1.4.5-1
-- Updated to release 1.4.5.
-
-* Fri Jul 09 2010 Dag Wieers <dag@wieers.com> - 1.4.4-1
-- Updated to release 1.4.4.
-
-* Fri Jun 11 2010 Christoph Maser <cmaser@gmx.de> - 1.4.3-3
-- create rrdcached user
-- add directory for rrdcached data and socket
-- add init script and sysconfig for rrdcached
-
-* Fri May 14 2010 Christoph Maser <cmaser@gmx.de> - 1.4.3-2
-- evaluating perl version will not work in mock
-- lua fixes
-
-* Thu May 13 2010 Christoph Maser <cmr@financial.com> - 1.4.3-1
-- Updated to version 1.4.3.
-- Removed EL4 build.
-
-* Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 1.4.2-1
-- Updated to version 1.4.2.
-
-* Mon Jan  4 2010 Christoph Maser <cmr@financial.com> - 1.3.9-1
-- Updated to version 1.3.9.
-
-* Wed Jul 22 2009 Dag Wieers <dag@wieers.com> - 1.3.8-2
-- Fixed the Typo in the xorg-x11-fonts-Typo1 requirement :) (Ben)
-
-* Tue Jul 21 2009 Christoph Maser <cmr@financial.com> - 1.3.8-1
-- Updated to version 1.3.8.
-
-* Fri May 15 2009 Christoph Maser <cmr@financial.com> - 1.3.7-1
-- Update to 1.3.7
-
-* Fri Feb 13 2009 Christoph Maser <cmr@financial.com> - 1.3.6-1
-- Update to 1.3.6
-
-* Mon Jan 05 2009 Christoph Maser <cmr@financial.com> - 1.3.5-2
-- Remove fc10 conditionals
-- Compile against evolution28 version of pango,cairo,glib on el4
-
-* Tue Dec 30 2008 Christoph Maser <cmr@financial.com> - 1.3.5-1
-- Update version
-- Add BuildRequires: ruby for macro expansion
-- Add BuildRequires: gettext-devel
-- Add Requires: gettext
-- Add fc10 conditionals
-
-* Sun Nov 23 2008 Christoph Maser <cmr@financial.com> - 1.3.4-2
-- Removed 1.2.x patches.
-- Removed dependencies cgilib.
-- Added dependencies pango, cairo.
-
-* Sun Nov 23 2008 Christoph Maser <cmr@financial.com> - 1.3.4-1
-- Updated to release 1.3.4.
-
-* Wed Oct 15 2008 Christoph Maser <cmr@financial.com> - 1.2.28-1
-- Updated to release 1.2.28.
-
-* Wed Jun 06 2007 Dag Wieers <dag@wieers.com> - 1.2.23-1
-- Updated to release 1.2.23.
-
-* Wed May 02 2007 Dag Wieers <dag@wieers.com> - 1.2.21-1
-- Updated to release 1.2.21.
-
-* Fri Jan 26 2007 Dag Wieers <dag@wieers.com> - 1.2.18-1
-- Updated to release 1.2.18.
-
-* Wed Jul 19 2006 Dag Wieers <dag@wieers.com> - 1.2.15-1
-- Updated to release 1.2.15.
-
-* Fri May 05 2006 Dag Wieers <dag@wieers.com> - 1.2.13-1
-- Updated to release 1.2.13.
-
-* Mon Dec 19 2005 Dag Wieers <dag@wieers.com> - 1.2.12-1
-- Updated to release 1.2.12.
-
-* Wed Jul 27 2005 Dag Wieers <dag@wieers.com> - 1.2.11-1
-- Updated to release 1.2.11.
-- Fixes for x86_64 and perl/tcl/python bindings.
-
-* Sat Jun 04 2005 Dag Wieers <dag@wieers.com> - 1.2.9-1
-- Updated to release 1.2.9.
-
-* Wed May 18 2005 Dag Wieers <dag@wieers.com> - 1.2.8-1
-- Updated to release 1.2.8.
-
-* Tue May 10 2005 Dag Wieers <dag@wieers.com> - 1.2.6-1
-- Updated to release 1.2.6.
-
-* Sat May 07 2005 Dag Wieers <dag@wieers.com> - 1.2.2-1
-- Updated to release 1.2.2.
-
-* Sat May 07 2005 Dag Wieers <dag@wieers.com> - 1.2.1-1
-- Updated to release 1.2.1.
-
-* Fri Apr 29 2005 Dag Wieers <dag@wieers.com> - 1.2.0-1
-- Updated to release 1.2.0.
-
-* Mon Apr 04 2005 Dag Wieers <dag@wieers.com> - 1.0.49-2
-- Fix for the php-rrdtool patch. (Joe Pruett)
-
-* Thu Aug 25 2004 Dag Wieers <dag@wieers.com> - 1.0.49-1
-- Updated to release 1.0.49.
-
-* Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 1.0.48-3
-- Fixes for x86_64. (Garrick Staples)
-
-* Fri Jul  2 2004 Matthias Saou <http://freshrpms.net/> 1.0.48-3
-- Actually apply the patch for fixing the php module, doh!
-
-* Thu May 27 2004 Matthias Saou <http://freshrpms.net/> 1.0.48-2
-- Added php.d config entry to load the module once installed.
-
-* Thu May 13 2004 Dag Wieers <dag@wieers.com> - 1.0.48-1
-- Updated to release 1.0.48.
-
-* Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 1.0.47-1
-- Updated to release 1.0.47.
-
-* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net/> 1.0.46-2
-- Change the strict dependency on perl to fix problem with the recent
-  update.
-
-* Mon Jan  5 2004 Matthias Saou <http://freshrpms.net/> 1.0.46-1
-- Update to 1.0.46.
-- Use system libpng and zlib instead of bundled ones.
-- Added php-rrdtool sub-package for the php4 module.
-
-* Fri Dec  5 2003 Matthias Saou <http://freshrpms.net/> 1.0.45-4
-- Added epoch to the perl dependency to work with rpm > 4.2.
-- Fixed the %% escaping in the perl dep.
-
-* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 1.0.45-2
-- Rebuild for Fedora Core 1.
-
-* Sun Aug  3 2003 Matthias Saou <http://freshrpms.net/>
-- Update to 1.0.45.
-
-* Wed Apr 16 2003 Matthias Saou <http://freshrpms.net/>
-- Update to 1.0.42.
-
-* Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>
-- Rebuilt for Red Hat Linux 9.
-
-* Wed Mar  5 2003 Matthias Saou <http://freshrpms.net/>
-- Added explicit perl version dependency.
-
-* Sun Feb 23 2003 Matthias Saou <http://freshrpms.net/>
-- Update to 1.0.41.
-
-* Fri Jan 31 2003 Matthias Saou <http://freshrpms.net/>
-- Update to 1.0.40.
-- Spec file cleanup.
-
-* Fri Jul 05 2002 Henri Gomez <hgomez@users.sourceforge.net>
-- 1.0.39
-
-* Mon Jun 03 2002 Henri Gomez <hgomez@users.sourceforge.net>
-- 1.0.38
-
-* Fri Apr 19 2002 Henri Gomez <hgomez@users.sourceforge.net>
-- 1.0.37
-
-* Tue Mar 12 2002 Henri Gomez <hgomez@users.sourceforge.net>
-- 1.0.34
-- rrdtools include zlib 1.1.4 which fix vulnerabilities in 1.1.3
