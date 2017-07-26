@@ -168,40 +168,20 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{__rm} -rf %{buildroot}
 
 %pre
-# Add the "rrdcached" user
-#/usr/sbin/useradd -c "rrdcached" \
-#    -s /sbin/nologin -r -d %{_localstatedir}/rrdtool/rrdcached rrdcached  2> /dev/null || :
 
-%post
-# Register the rrdcached service
-#/sbin/chkconfig --add rrdcached
+%post -n rrdtool -p /sbin/ldconfig
 
-#%preun
-#if [ $1 = 0 ]; then
-#    /sbin/service rrdcached stop > /dev/null 2>&1
-#    /sbin/chkconfig --del rrdcached
-#fi
-
+%postun -n rrdtool -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
-#%doc CHANGES CONTRIBUTORS COPYING COPYRIGHT NEWS README THREADS TODO
 %doc CHANGES CONTRIBUTORS COPYRIGHT LICENSE NEWS THREADS TODO VERSION
-#%doc examples/
-#%doc %{_mandir}/man1/*.1*
-#%doc %{_mandir}/man3/librrd.3*
-#%{_initrddir}/rrdcached
-#%{_sysconfdir}/sysconfig/rrdcached
-#%{_bindir}/rrdcached
-#%{_bindir}/rrdcgi
 %{_bindir}/rrdtool
 %{_bindir}/rrdupdate
 %{_bindir}/rrdcreate
 %{_bindir}/rrdinfo
-#%{_datadir}/rrdtool/ # for some reason there are no such directories
 %{_libdir}/librrd.so.*
 %{_libdir}/librrd_th.so.*
-#%attr(775,rrdcached,rrdcached) %dir %{_localstatedir}/rrdtool/rrdcached
 %{_bindir}/rrd-sync
 
 %files devel
@@ -248,3 +228,4 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 # %defattr(-, root, root, 0755)
 # %{_libdir}/lua/
 
+%changelog
