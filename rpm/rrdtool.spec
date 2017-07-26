@@ -14,9 +14,7 @@ Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 
 Source0: http://oss.oetiker.ch/rrdtool/pub/rrdtool-%{version}.tar.gz
-#Source1: rrdcached.init
-#Source2: rrdcached.sysconfig
-#BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+%define REMSOURCE0 http://oss.oetiker.ch/rrdtool/pub/rrdtool-%{version}.tar.gz
 
 BuildRequires: cairo-devel
 BuildRequires: freetype-devel
@@ -128,7 +126,9 @@ server load average). This package allow you to use directly this library.
 %setup -q -n %{name}-%{version}
 ls -l
 pwd
-echo %{SOURCE0}
+echo %{REMSOURCE0}
+curl -O %{REMSOURCE0}
+tar zxvf rrdtool-1.5.6.tar.gz --strip-components=1
 
 %build
 %configure \
@@ -148,7 +148,7 @@ echo %{SOURCE0}
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-%{__install} -Dp -m0755 pkg-rrdtool/rrd-sync %{buildroot}%{_bindir}/rrd-sync
+%{__install} -Dp -m0755 rrd-sync %{buildroot}%{_bindir}/rrd-sync
 
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 #%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
