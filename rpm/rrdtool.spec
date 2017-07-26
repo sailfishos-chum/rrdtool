@@ -14,7 +14,6 @@ Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 
 Source0: http://oss.oetiker.ch/rrdtool/pub/rrdtool-%{version}.tar.gz
-%define REMSOURCE0 http://oss.oetiker.ch/rrdtool/pub/rrdtool-%{version}.tar.gz
 
 BuildRequires: cairo-devel
 BuildRequires: freetype-devel
@@ -123,17 +122,7 @@ server load average). This package allow you to use directly this library.
 # for the Lua language.
 
 %prep
-%setup -q -n %{name}-%{version}
-ls -l
-pwd
-
-ifconfig || true
-cat /etc/hosts
-cat /etc/resolv.conf
-
-echo %{REMSOURCE0}
-curl -O %{REMSOURCE0}
-tar zxvf rrdtool-1.5.6.tar.gz --strip-components=1
+%setup -q -n %{name}-%{version}/rrdtool
 
 %build
 %configure \
@@ -153,7 +142,9 @@ tar zxvf rrdtool-1.5.6.tar.gz --strip-components=1
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-%{__install} -Dp -m0755 rrd-sync %{buildroot}%{_bindir}/rrd-sync
+ls ..
+pwd
+%{__install} -Dp -m0755 ../rrd-sync %{buildroot}%{_bindir}/rrd-sync
 
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 #%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod

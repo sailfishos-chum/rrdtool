@@ -1,0 +1,3 @@
+[submodule "rrdtool"]
+	path = rrdtool
+	url = https://github.com/oetiker/rrdtool-1.x.git
