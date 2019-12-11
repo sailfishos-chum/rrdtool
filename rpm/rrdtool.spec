@@ -32,7 +32,6 @@ BuildRequires: pango-devel
 # BuildRequires: ruby-devel
 # BuildRequires: tcl-devel
 # BuildRequires: tk-devel
-# %{!?_without_xulrunner:BuildRequires: xulrunner-devel}
 BuildRequires: zlib-devel
 Requires: cairo
 # Requires: gettext
@@ -116,7 +115,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/rrdcreate
 %{_bindir}/rrdinfo
 %{_libdir}/librrd.so.*
-%{_libdir}/librrd_th.so.*
 %{_bindir}/rrd-sync
 
 %files devel
@@ -126,10 +124,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_includedir}/rrd_format.h
 %{_libdir}/librrd.a
 %{_libdir}/librrd.so
-%{_libdir}/librrd_th.a
-%{_libdir}/librrd_th.so
 %{_libdir}/pkgconfig/librrd.pc
 %exclude %{_libdir}/librrd.la
-%exclude %{_libdir}/librrd_th.la
 
 %changelog
