@@ -71,6 +71,7 @@ server load average). This package allow you to use directly this library.
 
 %build
 %configure \
+    --disable-docs \
     --disable-perl \
     --disable-rrdcached \
     --disable-rrdcgi \
