@@ -66,6 +66,8 @@ display time-series data (i.e. network bandwidth, machine-room temperature,
 server load average). This package allow you to use directly this library.
 
 %prep
+ls
+ls -l */*
 %setup -q -n %{name}-%{version}/rrdtool -T -D
 
 %build
