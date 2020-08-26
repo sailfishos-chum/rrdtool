@@ -13,7 +13,7 @@ License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 
-Source0: http://oss.oetiker.ch/rrdtool/pub/rrdtool-%{version}.tar.gz
+Source0: _service
 
 BuildRequires: cairo-devel
 BuildRequires: freetype-devel
