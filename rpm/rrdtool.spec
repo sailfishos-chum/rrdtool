@@ -67,9 +67,8 @@ server load average). This package allow you to use directly this library.
 
 %prep
 ls -l %_sourcedir
-%dump
-exit 1
-%setup -q -n %_sourcedir/%{name}/rrdtool -T -D
+%setup -q -n %{name}-%{version}/rrdtool
+#%setup -q -n %_sourcedir/%{name}/rrdtool -T -D
 
 %build
 %configure \
