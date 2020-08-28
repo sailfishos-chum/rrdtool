@@ -13,7 +13,8 @@ License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 
-Source0: %{name}-%{version}.tar.xz
+#Source0: %{name}-%{version}.tar.xz
+Source0: %{name}-.tar.xz
 
 BuildRequires: cairo-devel
 BuildRequires: freetype-devel
@@ -66,9 +67,7 @@ display time-series data (i.e. network bandwidth, machine-room temperature,
 server load average). This package allow you to use directly this library.
 
 %prep
-ls -l %_sourcedir
 %setup -q -n %{name}-%{version}/rrdtool
-#%setup -q -n %_sourcedir/%{name}/rrdtool -T -D
 
 %build
 %configure \
