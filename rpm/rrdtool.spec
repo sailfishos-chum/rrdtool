@@ -87,7 +87,7 @@ server load average). This package allow you to use directly this library.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-%{__install} -Dp -m0755 ../rrd-sync %{buildroot}%{_bindir}/rrd-sync
+#%{__install} -Dp -m0755 ../rrd-sync %{buildroot}%{_bindir}/rrd-sync
 
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
@@ -115,7 +115,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/rrdcreate
 %{_bindir}/rrdinfo
 %{_libdir}/librrd.so.*
-%{_bindir}/rrd-sync
+#%{_bindir}/rrd-sync
 
 %files devel
 %defattr(-, root, root, 0755)
