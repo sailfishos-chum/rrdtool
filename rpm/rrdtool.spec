@@ -20,7 +20,7 @@ BuildRequires: freetype-devel
 BuildRequires: gcc-c++
 BuildRequires: glib2-devel
 # BuildRequires: gettext-devel
-BuildRequires: groff
+#BuildRequires: groff
 #BuildRequires: intltool
 BuildRequires: libpng-devel
 BuildRequires: libxml2-devel
