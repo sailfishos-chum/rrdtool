@@ -81,7 +81,7 @@ server load average). This package allow you to use directly this library.
     --disable-lua \
     --disable-tcl
 
-%{__make}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -98,6 +98,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 # remove docs
 %{__rm} -rf %{buildroot}%{_datadir}/doc/rrdtool*
 
+# remove services if installed
+%{__rm} -f %{buildroot}%{_unitdir}/rrd*.socket || true
+%{__rm} -f %{buildroot}%{_unitdir}/rrd*.service || true
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -109,7 +113,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES CONTRIBUTORS COPYRIGHT LICENSE NEWS THREADS TODO VERSION
+#%doc CHANGES CONTRIBUTORS COPYRIGHT LICENSE NEWS THREADS TODO VERSION
 %{_bindir}/rrdtool
 %{_bindir}/rrdupdate
 %{_bindir}/rrdcreate
