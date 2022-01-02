@@ -11,7 +11,7 @@ Version: 1.7.2
 Release: 3%{?dist}
 License: GPL
 Group: Applications/Databases
-URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
+URL: http://www.rrdtool.org/
 
 Source0: http://oss.oetiker.ch/rrdtool/pub/rrdtool-%{version}.tar.gz
 
@@ -55,6 +55,19 @@ enforce a certain data density. It can be used either via simple wrapper
 scripts (from shell or Perl) or via frontends that poll network devices and
 put a friendly user interface on it.
 
+PackageName: RRDtool
+Type: console-application
+Custom:
+  Repo: https://github.com/oetiker/rrdtool-1.x
+Categories:
+  - Utility
+  - Graphics
+  - Science
+Icon: https://upload.wikimedia.org/wikipedia/commons/7/7b/Rrdtool-3dlogo.png
+Screenshots:
+  - https://oss.oetiker.ch/rrdtool/gallery/sma_inverter.png
+  - https://upload.wikimedia.org/wikipedia/commons/7/76/Rrddemo.png
+
 %package devel
 Summary: RRDtool static libraries and header files
 Group: Development/Libraries
@@ -64,6 +77,16 @@ Requires: %{name} = %{version}
 RRD is the Acronym for Round Robin Database. RRD is a system to store and
 display time-series data (i.e. network bandwidth, machine-room temperature,
 server load average). This package allow you to use directly this library.
+
+PackageName: RRDtool Development
+Type: console-application
+Custom:
+  Repo: https://github.com/oetiker/rrdtool-1.x
+Categories:
+  - Library
+  - Graphics
+  - Science
+Icon: https://upload.wikimedia.org/wikipedia/commons/7/7b/Rrdtool-3dlogo.png
 
 %prep
 %setup -q -n %{name}-%{version}/rrdtool
